@@ -87,10 +87,12 @@ module.exports = {
 					iddocumento: req.body.idodcumento,
 					idtipoplanilla: req.body.idcategoriasl,
 					idperiodoplanilla: 2,
-					observaciones: req.body.ObservacionesIngretxt
+					observaciones: req.body.ObservacionesIngretxts
 				}
 			).then(datosingresados =>{
-					res.redirect('/pantallas/encabezadoplanilla');
+					//res.redirect('/pantallas/encabezadoplanilla');
+					res.redirect('/pantallas/editencabplanilla');
+
 			}).catch(Error => {
 				console.log('Error para el registro: ' + Error);
 			});

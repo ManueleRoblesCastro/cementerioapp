@@ -17,4 +17,5 @@ router1.get('/pantallas/encabezadoplanilla', AuthMiddleware.isLogged, controller
 
 
 
+
 module.exports = router1;

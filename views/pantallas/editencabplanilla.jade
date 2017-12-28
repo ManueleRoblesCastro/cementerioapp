@@ -1,0 +1,162 @@
+extends ../default
+block content
+
+	include ../menu/navmenu
+
+	div(class=['ui','container','grid','stackable'])
+		div(class='row')
+		div(class='row')
+
+		div(class=['floated', 'fifteen', 'wide', 'column'])
+
+			button(class=['fluid', 'ui', 'button', 'active'])='Modificar datos encabezado Planilla'
+
+			div(class=['ui', 'grey', 'inverted', 'segment', 'form-addplani'] )
+				form(class=['ui','form'], action='https://cementerioapp.herokuapp.com/pantallas/saveencabezado/2', method='post')
+
+					div(class=['ui', 'three', 'fields'])
+						div(class=['ui', 'field'])
+							label(for='idcodigoquincenalbl')= 'Quincena'
+							select(class=['ui', 'search' , 'dropdown'] name='idcodigoquincenasl' id='idcodigoquincenasl')
+								option(value='', selected)='sin seleccionar'
+								option(value='1')='Primera'
+								option(value='2')='Segunda'
+
+						div(class=['ui','field'])
+							label(for='idmeslbl')= 'Mes'
+							select(class=['ui', 'search' , 'dropdown'] name='idmessl' id='idmessl')
+								option(value='', selected)='sin seleccionar'
+								option(value='1')='Enero'
+								option(value='2')='Febrero'
+								option(value='3')='Marzo'
+								option(value='4')='Abril'
+								option(value='5')='Mayo'
+								option(value='6')='Junio'
+								option(value='7')='Julio'
+								option(value='8')='Agosto'
+								option(value='9')='Septiembre'
+								option(value='10')='Octubre'
+								option(value='11')='Noviembre'
+								option(value='12')='Diciembre'
+						div(class=['ui','field'])
+							label(for='idaniolbl')= 'Año'
+							select(class=['ui', 'search' , 'dropdown'] name='idaniosl' id='idaniosl')
+								option(value='', selected)='sin seleccionar'
+								option(value='2017')='2017'
+								option(value='2018')='2018'
+
+
+					div(class=['ui', 'three', 'fields'])
+						div(class=['ui','field'])
+							label(for='idcategorialbl')= 'Categoria planilla'
+							select(class=['ui', 'search' , 'dropdown'] name='idcategoriasl' id='idcategoriasl')
+								option(value='', selected)='sin seleccionar'
+								option(value='1')='Administrativa'
+								option(value='2')='Ventas'
+
+						div(class=['ui','field'])
+							label(for='monto')= 'Monto de la planilla'
+							input(type='text' name='montotxt' placeholder='Monto de la planilla' id='montotxt' )
+
+						div(class=['ui','field'])              
+							label(for='fechainglbl')= 'Fecha y hora'
+							div(class=['ui', 'input', 'left', 'icon'])
+								i(class=['calendar', 'icon'])                
+								input(type ='date' name='fechaingtxt' value=fechaDefault id='fechaingtxt' placeholder='Fecha ingreso planilla')
+
+					div(class=['ui', 'three', 'fields'])
+
+						div(class=['ui','field'])
+							label(for='documentolbl')= 'Código de documento'
+							input(type='text' name='idodcumento' placeholder='Código' id='idodcumento' maxlength='30')
+						div(class=['ui', 'field'])
+							label(for='ObservacionesIngrelbl')= 'Observaciones'
+							div(class=['ui', 'field'])
+								textarea(rows ='2' cols='1' name='ObservacionesIngretxt' id='ObservacionesIngretxt' placeholder='Ingrese las observaciones')
+
+
+
+						
+
+					div(class='actions' id='actions-addusuario')
+						button(class=['ui', 'right', 'labeled', 'icon', 'button', 'teal'] id='guardar-usuario')='Guardar'
+							i(class=['edit', 'icon'])
+						a(class=['ui right labeled button teal icon'] onclick="regresar()")='Regresar'
+							i(class=['step', 'backward', 'text', 'icon'])
+
+					div(class=['ui','message','error'])
+
+	script(type='text/javascript').
+
+		/*$('#fechaingtxt').flatpickr(
+			{
+			dateFormat: "d/m/Y",
+		    enableTime: true,
+		    locale:'es'
+			}
+		);*/
+
+		function regresar() {
+			window.location.href ='https://cementerioapp.herokuapp.com/pantallas/encabezadoplanilla';
+		}
+
+		var formAddPlanillaValidationRules =
+		{
+			idcodigoquincenasl: {
+				identifier  : 'idcodigoquincenasl',
+				rules : [
+					{
+						type   : 'empty',
+						prompt : 'Debe ingresar la quincena'
+					}
+				]
+			},
+			idmessl: {
+				identifier  : 'idmessl',
+				rules : [
+					{
+						type   : 'empty',
+						prompt : 'Debe ingresar un mes'
+					}
+				]
+			},			
+			idaniosl: {
+				identifier  : 'idaniosl',
+				rules : [
+					{
+						type   : 'empty',
+						prompt : 'Debe ingresar el año'
+					}
+				]
+			},			
+			idcategoriasl: {
+				identifier : 'idcategoriasl',
+				rules : [
+					{
+						type   : 'empty',
+						prompt : 'Debe seleccionar una categoria'
+					}
+				]			
+			},
+			idodcumento: {
+				identifier  : 'idodcumento',
+				rules: [
+					{
+						type   : 'empty',
+						prompt : 'Debe ingresar un codigo de documento'
+					}
+				]
+			}
+		}
+
+		var formSettings =
+		{
+			onFailure : function() 
+			{
+				//alert("InValid Submission, modal will not close.");
+				//swal("Alerta en la Información Proporcionada", "Favor completar o modificar la información resaltada para efectos de guardarla correctamente");
+				return false;
+			}
+		}
+
+		$('.form-addplani form').form(formAddPlanillaValidationRules, formSettings);
