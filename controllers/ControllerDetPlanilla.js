@@ -49,7 +49,7 @@ module.exports = {
 		       	Sdetalleplanilla =JSON.parse(JSON.stringify(datosdetalleplanilla));
 
 	       			models.sequelize.query(`select personasnaturales.IDPersona, 
-	       			concat(personasnaturales.NombresPersona, ' ' , personasnaturales.ApellidosPersona) as Nombrepersona
+	       			concat(personasnaturales.ApellidosPersona, ' ' , personasnaturales.NombresPersona) as Nombrepersona
 	       			from personasnaturales inner join empleado on personasnaturales.IDPersona =empleado.IDPersona`, 
 					{ type: models.sequelize.QueryTypes.SELECT}).then(empleadoslist => {
 
