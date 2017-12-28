@@ -86,7 +86,7 @@ module.exports = {
 					codigousuario: 'SEOTERO',
 					iddocumento: req.body.idodcumento,
 					idtipoplanilla: req.body.idcategoriasl,
-					idperiodoplanilla: 1,
+					idperiodoplanilla: 2,
 					observaciones: req.body.idobservaciones
 				}
 			).then(datosingresados =>{

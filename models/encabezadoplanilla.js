@@ -122,6 +122,17 @@ module.exports = function(sequelize, DataTypes) {
       set(val) {
         this.setDataValue('idtipoplanilla', val);
       }
+    },
+
+    idperiodoplanilla: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+      get() {
+        return this.getDataValue('idperiodoplanilla');
+      },
+      set(val) {
+        this.setDataValue('idperiodoplanilla', val);
+      }
     }
   }, {
     timestamps: false,
