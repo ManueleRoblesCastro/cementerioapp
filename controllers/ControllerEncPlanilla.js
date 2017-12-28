@@ -85,7 +85,9 @@ module.exports = {
 					monto: req.body.montotxt,
 					codigousuario: 'SEOTERO',
 					iddocumento: req.body.idodcumento,
-					idtipoplanilla: req.body.idcategoriasl
+					idtipoplanilla: req.body.idcategoriasl,
+					idperiodoplanilla: 1,
+					observaciones: req.body.idobservaciones
 				}
 			).then(datosingresados =>{
 					res.redirect('/pantallas/encabezadoplanilla');
