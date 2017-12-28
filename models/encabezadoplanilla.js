@@ -93,7 +93,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     observaciones: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.STRING(300),
       allowNull: true,
       get() {
         return this.getDataValue('observaciones');

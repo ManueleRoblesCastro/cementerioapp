@@ -87,7 +87,7 @@ module.exports = {
 					iddocumento: req.body.idodcumento,
 					idtipoplanilla: req.body.idcategoriasl,
 					idperiodoplanilla: 2,
-					observaciones: req.body.idobservaciones
+					observaciones: req.body.ObservacionesIngretxt
 				}
 			).then(datosingresados =>{
 					res.redirect('/pantallas/encabezadoplanilla');
