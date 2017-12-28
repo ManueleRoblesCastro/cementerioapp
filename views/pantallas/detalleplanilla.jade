@@ -1,0 +1,273 @@
+extends ../default
+block content
+
+	include ../menu/navmenu
+	include modaleditdetailpla
+
+	div(class=['ui', 'grid', 'container'])
+			div(class='row')
+			div(class='row')
+
+		div(class=['ui', 'grid', 'container','stackable'])
+
+			div(class=['floated', 'sixteen', 'wide', 'column', 'segment'])
+				//-h4(class=['ui', 'horizontal', 'divider', 'header'])='Buscar Empresa'
+				button(class=['fluid', 'ui', 'button'])='Detalle de planilla'
+
+				a(class=['ui button icon green'] data-tooltip='Nueva' data-position='top center' data-inverted='' id='nuevodetalleplanilla' href='https://cementerioapp.herokuapp.com/pantallas/addpreplaAdm')
+					i(class=['add icon'])
+
+				a(class=['ui button icon blue'] data-tooltip='Regresar' data-position='top center' data-inverted='' id='regmenuppal' onclick="regresarmenuppal(1,0)")
+					i(class=['step', 'backward', 'text', 'icon'])
+
+			button(class=['fluid', 'ui', 'button'])='Código planilla: ' + Sencabezadoplanilla[0].idplanillaadmon + ', quincena: ' + Sencabezadoplanilla[0].noquincena + ', mes: ' + Sencabezadoplanilla[0].mes + ', año: ' + Sencabezadoplanilla[0].anio + ', Monto($): ' + Sencabezadoplanilla[0].monto+ ', Fecha: ' + Sencabezadoplanilla[0].fechaingreso
+
+			input(type='hidden'  id='idcodigoencabezado' value=Sencabezadoplanilla[0].idplanillaadmon)
+
+			table(class=['ui','table','celled'] id='tbl-detallePlanillas')
+				thead
+					tr
+						th='Id'
+						th='IdPersona'
+						th='Empleado(a)'
+						th='Salario nominal'
+						th='Salario diario'
+						th='Dias desc.'
+						th='Horas extas dia'
+						th='Horas extas noche'
+						th='Monto horas extras'
+						th='Ad. salarial'
+						th='AFP'
+						th='ISSS'
+						th='Otros desc.'
+						th='Salario de renta'
+						th='ISR'
+						th='Total desc.'
+						th='Total a pagar'
+				tbody(id='detallePlanillasBody')
+					each varSdetalleplanilla in Sdetalleplanilla
+						tr
+							td= varSdetalleplanilla.iddetalleencabezadoplanilla
+							td= varSdetalleplanilla.IDPersona
+							td= varSdetalleplanilla.NombreCompleto
+							td= varSdetalleplanilla.salarionominal
+							td= varSdetalleplanilla.salariodiario
+							td= varSdetalleplanilla.diasdescontados
+							td= varSdetalleplanilla.horasextrasdiurnas
+							td= varSdetalleplanilla.horasextrasnocturnas
+							td= varSdetalleplanilla.montoshorasextras
+							td= varSdetalleplanilla.adelantosalarial
+							td= varSdetalleplanilla.afp
+							td= varSdetalleplanilla.isss
+							td= varSdetalleplanilla.otrosdescuentos
+							td= varSdetalleplanilla.salariosujetorenta
+							td= varSdetalleplanilla.isr
+							td= varSdetalleplanilla.totaldescuentos
+							td= varSdetalleplanilla.totalpagar
+
+	script(type='text/javascript').
+
+		//$('#idfecharemesareiemp').datepicker();
+
+		function regresarmenuppal(opcion, idencabezado){
+			if(opcion==1)
+				{
+					window.location.href ='https://cementerioapp.herokuapp.com/pantallas/encabezadoplanilla';
+				}
+			
+		};
+
+		$(document).ready(function() {
+
+			$('#tbl-detallePlanillas').DataTable  
+				({
+
+					columns: [
+						{ data: 'iddetalleencabezadoplanilla', width:10 },
+						{ data: 'IDPersona', width: 10, visible: false },
+						{ data: 'NombreCompleto', width: 10 },
+
+						{ data: 'salarionominal', width: 10, 'sClass': 'right aligned', 
+							render: $.fn.dataTable.render.number(',', '.', 2, '') },
+						{ data: 'salariodiario', width: 10, 'sClass': 'right aligned', 
+							render: $.fn.dataTable.render.number(',', '.', 2, '') },
+
+						{ data: 'diasdescontados', width: 10 }, 
+						{ data: 'horasextrasdiurnas', width: 10 },
+						{ data: 'horasextrasnocturnas', width: 10 },
+						{ data: 'montoshorasextras', width: 10, 'sClass': 'right aligned', 
+							render: $.fn.dataTable.render.number(',', '.', 2, '') },
+						{ data: 'adelantosalarial', width: 10, 'sClass': 'right aligned', 
+							render: $.fn.dataTable.render.number(',', '.', 2, '') },
+						{ data: 'afp', width: 10, 'sClass': 'right aligned', 
+							render: $.fn.dataTable.render.number(',', '.', 2, '') },
+						{ data: 'isss', width: 10, 'sClass': 'right aligned', 
+							render: $.fn.dataTable.render.number(',', '.', 2, '') },
+						{ data: 'otrosdescuentos', width: 10, 'sClass': 'right aligned', 
+							render: $.fn.dataTable.render.number(',', '.', 2, '') },
+						{ data: 'salariosujetorenta', width: 10, 'sClass': 'right aligned', 
+							render: $.fn.dataTable.render.number(',', '.', 2, '') },
+						{ data: 'isr', width: 10, 'sClass': 'right aligned', 
+							render: $.fn.dataTable.render.number(',', '.', 2, '') },
+						{ data: 'totaldescuentos', width: 10, 'sClass': 'right aligned', 
+							render: $.fn.dataTable.render.number(',', '.', 2, '') },
+						{ data: 'totalpagar', width: 10, 'sClass': 'right aligned', 
+							render: $.fn.dataTable.render.number(',', '.', 2, '') }
+					],
+
+					"aoColumnDefs": [
+						{ "sClass": "my_class_col", "aTargets": [0] }
+					],
+
+					'lengthMenu': [5,10, 25, 50, 100],
+					'order': [[ 0, 'desc' ]],
+					stateSave: false,
+					'language': {
+						//"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/German.json"
+						'url': '/datatable/language/Spanish.json'
+					} ,
+					"dom": '<"top"if>rt<"bottom"lBp><"clear">',
+					
+				   buttons: [
+						{
+							extend: 'copy',
+							text: 'Copiar'
+						},
+						'excel', 
+						'pdf'
+					],
+
+					rowCallback: function( row, data, index ) {
+						if(index%2 == 0){
+							$(row).removeClass('myodd myeven');
+							$(row).addClass('myodd');
+							}
+						else{
+							$(row).removeClass('myodd myeven');
+							$(row).addClass('myeven');
+						}
+					}
+						 
+			});//DataTable
+
+			function myCallbackFunction(updatedCell, updatedRow, oldValue) {
+				var FSelectedUp = [];
+				var rowDataUp = updatedRow.data();
+				FSelectedUp = JSON.stringify(rowDataUp);
+				FSelectedUp = JSON.parse(FSelectedUp);
+
+				var num_fila_col = [];
+				num_fila_col= JSON.parse(JSON.stringify(updatedCell.index()));
+
+				if (num_fila_col.column==8 || num_fila_col.column==9 || num_fila_col.column==10){
+					//swal("Alerta de Sistema Id"+ FSelectedUp.iddetalleencabezadoplanilla, "has hecho click en columna no. 8");
+					$.ajax({
+						url : 'https://cementerioapp.herokuapp.com/pantallas/editarIDdetp/',
+						method : 'post',
+						data : { 
+							iddetalle : FSelectedUp.iddetalleencabezadoplanilla,
+							iddetalledias : FSelectedUp.diaslaborados,
+							iddetallehorad : FSelectedUp.horasextrasdiurnas,
+							iddetallehoran : FSelectedUp.horasextrasnocturnas,
+							idsalarionom: FSelectedUp.salarionominal
+						},
+						success : function(respuesta){
+							if(respuesta){
+								if (num_fila_col.column==8){
+									var value1float =parseFloat((FSelectedUp.salarionominal/30)*FSelectedUp.diaslaborados);
+									$('#tbl-detallePlanillas').DataTable().cell( num_fila_col.row, num_fila_col.column-1 ).data( value1float.toFixed(2) ).draw();
+								}
+								swal("Hecho!", "El detalle de planilla ha sido actualizado.", "success");    
+							}
+						}
+					});                    
+				}
+			}           
+
+			$('#tbl-detallePlanillas').DataTable().MakeCellsEditable({
+				"onUpdate": myCallbackFunction,
+				"inputCss":'my-input-class',
+				"columns" : [5, 6, 7, 9, 12],
+				"inputTypes": [
+					{
+						"column":5,
+						"type":"numeric-confirm"
+					},
+					{
+						"column":6,
+						"type":"numeric-confirm"
+					},
+					{
+						"column":7,
+						"type":"numeric-confirm"
+					},
+					{
+						"column":9,
+						"type":"decimal-confirm"
+					},
+					{
+						"column":12,
+						"type":"decimal-confirm"
+					}					
+				]
+			});// DataTable().MakeCellsEditable
+
+			$('#tbl-detallePlanillas tbody').on('click', 'td', function () {
+
+				//var accionmtto = false;
+				var cellclick = this;
+				var FSelected = [];
+				var Fborrada = [];
+				var row_clicked = $(this).closest('tr');
+				var num_fila = $('#tbl-detallePlanillas').DataTable().row(row_clicked).index();
+				//alert(num_fila);
+				var rowData = $('#tbl-detallePlanillas').DataTable().row(row_clicked).data();
+				FSelected = JSON.stringify(rowData);
+				FSelected = JSON.parse(FSelected);
+
+				var col_clicked = $('#tbl-detallePlanillas').DataTable().cell( this ).index().columnVisible;
+				//alert(col_clicked);
+
+				if (col_clicked ==0){
+					//alert(FSelected.CodigoCuotaRecibida);
+					//- $.get( 'http://192.168.17.44:3001/detalleCR/'+FSelected.CodigoCuotaRecibida, function( objJsonDatosRec ) {
+
+					//-     //console.log(objJsonDatosRec.maxcrxnocontrol[0].CodigoPlanillaVentanilla);
+					$('input[name="editIdDetail"]').val(FSelected.iddetalleencabezadoplanilla);
+					//$('input[name="editIdPersona"]').val(FSelected.IDPersona);
+					$("#ideditIdPersona").val(FSelected.IDPersona).change();
+					$('input[name="editsalarionominal"]').val(FSelected.salarionominal);
+					$('input[name="editsalariodiario"]').val(FSelected.salariodiario);
+					$('input[name="editDiaslaborados"]').val(FSelected.diaslaborados);
+					$('input[name="editHorasdiurnas"]').val(FSelected.horasextrasdiurnas);
+					$('input[name="editHorasnocturnas"]').val(FSelected.horasextrasnocturnas);
+					$('input[name="editsalariotot"]').val(FSelected.salariototal);
+					$('input[name="editdescafp"]').val(FSelected.afp);
+					$('input[name="editdescisss"]').val(FSelected.isss);
+					$('input[name="editdescrenta"]').val(FSelected.renta);
+					$('input[name="editdesotros"]').val(FSelected.otrosdescuentos);
+					$('input[name="edittotalpagar"]').val(FSelected.totalpagar);
+
+					//-     $('#tbl-crsdistrib').DataTable().rows().remove().draw();
+					//-     //console.log(objJsonDatosRec.crsdistxnocontrol.length);
+					//-     if (objJsonDatosRec.crsdistxnocontrol.length>0){
+					//-         $('#tbl-crsdistrib').DataTable().rows.add(objJsonDatosRec.crsdistxnocontrol).draw();
+					//-     }
+
+					$('#modaleditdetailid').modal({
+						closable : false
+						/*,
+						onHide: function(){
+							//console.log('hidden');
+							if(num_fila>0){
+								$('#tbl-crsempresa').DataTable().row( num_fila ).scrollTo();
+								$('#tbl-crsempresa').DataTable().cell( num_fila, 6 ).data( $('#sumidmontodistr').val() ).draw( false );
+							}
+						}*/
+					});
+					$('#modaleditdetailid').modal('show');
+				}
+
+			});
+
+		});// $(document).ready

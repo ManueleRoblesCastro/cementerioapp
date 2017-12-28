@@ -1,0 +1,138 @@
+extends ../default
+//- ^^^ fg=#66d9ef fs= italic
+//-     ^^^^^^^^^^ fg=#f8f8f2 fs=
+block content
+
+	include ../menu/navmenu
+
+	div(class=['ui','container','grid','stackable'])
+		div(class='row')
+		div(class='row')
+
+		div(class=['floated', 'fifteen', 'wide', 'column'])
+
+			button(class=['fluid', 'ui', 'button', 'active'])='Agregar nueva planilla'
+
+			div(class=['ui', 'grey', 'inverted', 'segment', 'form-addPlePlanilla'] )
+
+				form(class=['ui','form'], action='https://cementerioapp.herokuapp.com/pantallas/saveusuario/2', method='post')
+					div(class=['ui', 'three', 'fields'])
+						div(class=['ui', 'field'])
+							label(for='codusuarioadd')= 'Usuario'
+							div(class = ['ui', 'input', 'left', 'icon'])
+								input(type='text' placeholder='Usuario' name='codusuarioadd' id='idcodusuarioadd' maxlength='10' )
+						div(class=['ui','field'])
+							label(for='apellidosusuario')= 'Apellidos'
+							input(type='text' name='apellidosusuario' placeholder='Apellidos' id='idapellidosusuario' maxlength='50')
+						div(class=['ui','field'])
+							label(for='nombresusuario')= 'Nombres'
+							input(type='text' name='nombresusuario' placeholder='Nombres' id='idnombresusuario' maxlength='50')
+					div(class=['ui', 'three', 'fields'])
+						div(class=['ui','field'])
+							label(for='emailusuario')= 'Correo Electrónico'
+							input(type='text' name='emailusuario' placeholder='Correo Electrónico' id='idemailusuario' maxlength='30')
+						div(class=['ui','field'])
+							label(for='codusuariosup')= 'Usuario Supervisor'
+							select(class=['ui', 'search' , 'dropdown'] name='codusuariosup' id='idcodusuariosup')
+								//-each usuario in usuarios
+									option(value='#{usuario.CodigoUsuario}') #{usuario.NombreCompleto}
+						div(class=['ui','field'])
+							label(for='codperfiles')= 'Perfil'
+							select(class=['ui', 'search' , 'dropdown'] multiple ='' name='codperfiles' id='idcodperfiles')
+								//-each perfil in perfiles
+									option(value='#{perfil.CodigoPerfil}') #{perfil.NombrePerfil}
+					div(class=['ui', 'two', 'fields'])
+						div(class=['ui','field'])
+							label(for='codestadousuario')= 'Estado'
+							select(class=['ui', 'search' , 'dropdown'] name='codestadousuario' id='idcodestadousuario')
+								option(value='A', selected)='Activo'
+								option(value='I')='Inactivo'
+						div(class=['ui','field'])
+							label(for='usuarioubicacion')= 'Ubicación Física'
+							input(type='text' name='usuarioubicacion' placeholder='Ubicación Física' id='idusuarioubicacion')
+
+					div(class='actions' id='actions-addusuario')
+						button(class=['ui', 'right', 'labeled', 'icon', 'button', 'teal'] id='guardar-usuario')='Guardar'
+							i(class=['edit', 'icon'])
+						a(class=['ui right labeled button teal icon'] onclick="regresar()")='Regresar'
+							i(class=['step', 'backward', 'text', 'icon'])
+
+					div(class=['ui','message','error'])
+
+	script(type='text/javascript').
+
+		$('#idcodperfiles').dropdown();				
+
+		function regresar() {
+			window.location.href ='https://cementerioapp.herokuapp.com/pantallas/usuarios';
+		}
+
+		var formaddPlePlanillaValidationRules =
+		{
+			apellidosusuario: {
+				identifier  : 'apellidosusuario',
+				rules : [
+					{
+						type   : 'empty',
+						prompt : 'Debe ingresar apellidos de usuario'
+					}
+				]
+			},
+			nombresusuario: {
+				identifier  : 'nombresusuario',
+				rules : [
+					{
+						type   : 'empty',
+						prompt : 'Debe ingresar nombres de usuario'
+					}
+				]
+			},			
+			emailusuario: {
+				identifier  : 'emailusuario',
+				rules : [
+					{
+						type   : 'empty',
+						prompt : 'Debe ingresar correo electrónico de usuario'
+					}
+				]
+			},			
+			codusuariosup: {
+				identifier : 'codusuariosup',
+				rules : [
+					{
+						type   : 'empty',
+						prompt : 'Debe seleccionar un usuario supervisor'
+					}
+				]			
+			},
+			codestadousuario: {
+				identifier  : 'codestadousuario',
+				rules: [
+					{
+						type   : 'empty',
+						prompt : 'Debe ingresar un estado de usuario'
+					}
+				]
+			},			
+			codperfiles: {
+				identifier : 'codperfiles',
+				rules : [
+					{
+						type   : 'empty',
+						prompt : 'Debe seleccionar perfil(es) de usuario'
+					}
+				]			
+			}
+		}
+
+		var formSettings =
+		{
+			onFailure : function() 
+			{
+				//alert("InValid Submission, modal will not close.");
+				//swal("Alerta en la Información Proporcionada", "Favor completar o modificar la información resaltada para efectos de guardarla correctamente");
+				return false;
+			}
+		}
+
+		$('.form-addPlePlanilla form').form(formaddPlePlanillaValidationRules, formSettings);

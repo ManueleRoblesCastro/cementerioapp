@@ -1,0 +1,69 @@
+div(class=['ui','modal'] id='modaleditdetailid')
+	i(class=['close', 'icon'])
+	div(class=['floated', 'ten', 'wide', 'column', 'form-modificardetail'])
+		button(class=['fluid', 'ui', 'button', 'disabled'])='Modificar Detalle de Planilla'
+		br
+
+		form(class=['ui','form','segment'] method='get' id='form-editdetailid')
+			input(type='hidden' name='editfilacr' placeholder='0' id='iddetail' readonly)
+			div(class=['ui', 'two', 'fields'])
+				div(class=['ui','field'])
+					label(for='IdDetail')= 'Cod. ID.'
+					input(type='text' name='editIdDetail' placeholder='0' id='ideditIdDetail' readonly)
+				div(class=['ui','field'])						
+					label(for='IdPersona')= 'Empleado'
+					select(class=['ui', 'search' , 'dropdown'] name='editIdPersona' id='ideditIdPersona')
+						if empleadoslist!=undefined
+							each empleadolist in empleadoslist
+								option(value='#{empleadolist.IDPersona}') #{empleadolist.Nombrepersona}
+			div(class=['ui', 'three', 'fields'])
+				div(class=['ui','field'])
+					label(for='Salarionominal')= 'Salario Nominal($)'
+					input(type='number' name='editsalarionominal' placeholder='0' id='ideditsalarionominal')			
+				div(class=['ui','field'])
+					label(for='Salariodiario')= 'Salario x dia($)'
+					input(type='number' name='editsalariodiario' placeholder='0' id='ideditsalariodiario')			
+				div(class=['ui','field'])
+					label(for='Diaslaborados')= 'Días Laborados'
+					input(type='number' name='editDiaslaborados' placeholder='0' id='idDiaslaborados')
+			div(class=['ui', 'two', 'fields'])
+				div(class=['ui','field'])
+					label(for='Horasdiurnas')= 'Horas Diurnas'
+					input(type='number' name='editHorasdiurnas' placeholder='0' id='idHorasdiurnas')
+				div(class=['ui','field'])
+					label(for='Horasnocturnas')= 'Horas Nocturnas'
+					input(type='number' name='editHorasnocturnas' placeholder='0' id='idHorasnocturnas')
+			div(class=['ui','field'])
+				label(for='Idsalariotot')= 'Salario Total($)'
+				input(type='number' name='editsalariotot' placeholder='0.00' id ='ideditsalariotot')
+			div(class=['ui', 'four', 'fields'])
+				div(class=['ui','field'])
+					label(for='descafp')= 'AFP($)'
+					input(type='number' name='editdescafp' placeholder='0.00' id='ideditdescafp')			
+				div(class=['ui','field'])
+					label(for='descisss')= 'ISSS($)'
+					input(type='number' name='editdescisss' placeholder='0.00' id='ideditdescisss')			
+				div(class=['ui','field'])
+					label(for='descrenta')= 'RENTA($)'
+					input(type='number' name='editdescrenta' placeholder='0.00' id='ideditdescrenta')
+				div(class=['ui','field'])
+					label(for='desotros')= 'Otros Descuentos($)'
+					input(type='number' name='editdesotros' placeholder='0.00' id='ideditdesotros')
+			div(class=['ui','field'])
+				label(for='Idtotalpagar')= 'Total a Pagar($)'
+				input(type='number' name='edittotalpagar' placeholder='0.00' id ='idedittotalpagar' readonly)
+
+			div(class='actions')
+				//-div(class=['ui', 'primary', 'submit', 'button'] id='btn-editreiempguardarcr')='Guardar'
+				table(class=['ui','table','celled'] id='tbl-objcrsdistribfoot')
+					tbody
+						tr
+							td
+								button(class=['ui','button', 'blue'] id='edit-detailid')='Guardar'
+			div(class=['ui','message','error'])
+
+script(type='text/javascript').
+
+	$('#edit-detailid').click(function (e){
+		$('.ui.modal').modal('hide');
+	});

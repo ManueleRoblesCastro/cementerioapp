@@ -1,0 +1,29 @@
+{
+  "development": {
+    "usr_env_variable" : "CLEARDB_DATABASE_URL",
+    "username": "b6d66777d25b3a",
+    "password": "f910042b",
+    "database": "heroku_09a2cdbcb38f750",
+    "host": "us-cdbr-iron-east-05.cleardb.net",
+    "dialect": "mysql",
+    "timezone": "-06:00"
+  },
+  "test": {
+    "usr_env_variable" : "CLEARDB_DATABASE_URL",    
+    "username": "b6d66777d25b3a",
+    "password": "f910042b",
+    "database": "heroku_09a2cdbcb38f750",
+    "host": "us-cdbr-iron-east-05.cleardb.net",
+    "dialect": "mysql",
+    "timezone": "-06:00"
+  },
+  "production": {
+    "usr_env_variable" : "CLEARDB_DATABASE_URL",
+    "username": "b6d66777d25b3a",
+    "password": "f910042b",
+    "database": "heroku_09a2cdbcb38f750",
+    "host": "us-cdbr-iron-east-05.cleardb.net",    
+    "dialect": "mysql",
+    "timezone": "-06:00"    
+  }
+}

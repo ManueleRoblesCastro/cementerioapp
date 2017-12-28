@@ -1,0 +1,33 @@
+{
+  "name": "CEMENTERIO",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "~1.4.3",
+    "csvtojson": "^1.1.7",
+    "dateformat": "^2.0.0",
+    "debug": "^2.6.3",
+    "express": "~4.14.0",
+    "express-fileupload": "^0.1.4",
+    "express-session": "^1.15.2",
+    "fs": "0.0.1-security",
+    "jade": "~1.11.0",
+    "moment": "^2.19.3",
+    "morgan": "~1.7.0",
+    "mysql2": "^1.5.1",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "request": "^2.81.0",
+    "sequelize": "^4.22.11",
+    "serve-favicon": "~2.3.0",
+    "underscore": "^1.8.3"
+  },
+  "engines": {
+    "node": "7.7.3"
+  }
+}

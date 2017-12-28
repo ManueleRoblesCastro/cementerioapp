@@ -1,0 +1,81 @@
+extends ../default
+block content
+
+    include ../menu/navmenu
+
+    div(class=['ui', 'grid', 'container'])
+        div(class='row')
+        div(class='row')
+        div(class=['ui', 'grid', 'container','stackable'])
+
+            div(class=['floated', 'sixteen', 'wide', 'column', 'segment'])
+
+                button(class=['fluid', 'ui', 'button', 'active'])='Mantenimiento de Personas naturales'
+
+
+                a(class=['ui button icon teal'] data-tooltip='Nuevo' data-position='top center' data-inverted='' id='nuevoreciboinemp' href='https://cementerioapp.herokuapp.com/')
+                    i(class=['add icon'])
+                div(class=['ui', 'slider', 'checkbox'])
+                    input(type='checkbox' name='filtro-N' id='idfiltro-N')
+                    label='Ver todos las personas ingresadas'
+
+                table(class=['ui','table','celled'] id='tbl-personasnaturales')
+                    thead
+                        tr
+                            th='Código'
+                            th='Apellidos'
+                            th='Nombres'
+                            th='Opciones'
+                    tbody(id='myTableBody')
+                        each vardatospernat in datospernat
+                            tr
+                                td
+                                    a(class=['ui button black basic'] href='https://cementerioapp.herokuapp.com/pantallas/editusuarios/'+ vardatospernat.IDPersona data-tooltip='Ver Detalle' data-position='top right' data-inverted='')=vardatospernat.IDPersona
+                                td= vardatospernat.ApellidosPersona
+                                td= vardatospernat.NombresPersona
+                                td
+                                    a(class=['ui button teal icon'] onclick="inactivar_usuario('"+vardatospernat.IDPersona+"')" data-tooltip='Inactivar' data-position='top right' data-inverted='')
+                                        i(class=['window close icon'])
+                                    a(class=['ui button teal icon'] onclick="borrar_usuario('"+vardatospernat.IDPersona+"')" data-tooltip='Borrar' data-position='top right' data-inverted='')
+                                        i(class=['trash icon'])
+
+    script(type='text/javascript').
+
+        $('#tbl-personasnaturales').DataTable({
+            "dom": '<"top"if>rt<"bottom"lp><"clear">',
+
+            columnDefs: [
+                { width: '12%', targets: 0 },
+                { width: '12%', targets: 1 },
+                { width: '12%', targets: 2 },
+                { width: '12%', targets: 3 }
+            ],
+
+            colReorder: true,
+            responsive: true,           
+            paging: true,
+            select: {
+                style: 'single'
+            },
+            'pageLength': 25,
+             "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "todo"]],
+            'order': [[ 0, 'desc' ]],
+            stateSave: true,
+            'language': {
+                'url': '/datatable/language/Spanish.json',
+                select: {
+                    rows: "%d fila(s) seleccionada(s)"
+                }
+            },
+
+            "rowCallback": function( row, data, index ) {
+                if(index%2 == 0){
+                    $(row).removeClass('myodd myeven');
+                    $(row).addClass('myodd');
+                    }
+                else{
+                    $(row).removeClass('myodd myeven');
+                    $(row).addClass('myeven');
+                }
+            }
+        });

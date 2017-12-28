@@ -1,0 +1,65 @@
+div(class=['ui', 'grid', 'container'])
+	div(class=['ui', 'sidebar', 'vertical', 'left', 'inverted', 'menu'] id='myContainerMenu')
+		div(class='item')
+			div(class='header')='CATALOGOS'
+				div(class='menu')
+					a(class=['ui', 'item'] href='https://cementerioapp.herokuapp.com/pantallas/usuarios')='Usuarios'
+				div(class='menu')
+					a(class=['ui', 'item'] href='https://cementerioapp.herokuapp.com/pantallas/personasNat')='Personas naturales'
+
+				div(class='menu')
+					a(class=['ui', 'item'] href='https://cementerioapp.herokuapp.com/pantallas/encabezadoplanilla')='Planillas'
+
+	div(class=['ui', 'basic', 'icon', 'top', 'fixed', 'menu'] id='contenedormenu')
+		div(id='toggle' class='item')='Menú'
+			i(class=['sidebar', 'icon'])
+
+		div(class=['ui', 'dropdown', 'icon', 'item'], id='mainmenu1')
+			div(class = ['ui', 'input', 'right', 'icon'])='Operación'
+			i(class=['wrench', 'icon'])
+			div(class='menu' id='vertmenu')
+				div(class='item')
+					i(class=['dropdown', 'icon'])
+					span(class='text')='SISTEMA'
+					div(class='menu')
+						div(class='item' id='submnuVerDescri')='Descripción'
+						div(class='item' id='submnuVerMacrop')='Macro Proceso'
+						div(class='item' id='submnuVerPreguntas')='Preguntas mas frecuentes'
+						div(class='divider')
+						div(class='item' id='submnuVerRequer')='Solicitud de Requerimiento Técnico'
+						div(class='item' id='submnuChat')='Asistencia en Linea'
+						div(class='divider')
+						div(class='item' id='submnuVerPla')='Elaboración de planilla'
+
+				div(class='divider')
+				div(class='item' id='submnuCredito')='Créditos'
+				div(class='divider')
+				div(class='item' id='submnuSalir')='Cerrar Sesión'
+
+		div(class=['right', 'menu'])
+		div(class='content')
+			div(class=['ui', 'sub', 'header'])=user.NombresUsuario + ' ' + user.ApellidosUsuario
+			- var nombresperfil=''
+			for perfil in user.Perfiles
+				- nombresperfil = nombresperfil + ' ' + perfil.NombrePerfil
+			span(class=['text'] id='idspanperfil')=nombresperfil
+
+		a(class=['ui', 'item'] href='https://cementerioapp.herokuapp.com/logout')='Cerrar Sesión'
+			i(class=['user', 'icon'])
+
+		script(type='text/javascript').
+
+			$('#mainmenu1').dropdown({
+					on: 'hover'
+				});
+			$('#mainmenu2').dropdown({
+					on: 'hover'
+				});						
+			$('#submnuSalir').on('click',function(){
+				window.location.href ='https://cementerioapp.herokuapp.com/logout';
+			});          
+			$('#toggle').click( function(){
+				//$('#myContainerMenu').sidebar('attach events', '.menu .item');
+				$('#myContainerMenu').sidebar('toggle')
+				;
+			});

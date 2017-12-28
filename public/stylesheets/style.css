@@ -1,0 +1,201 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+@media screen and (min-width: 1px) {
+  #contendormodal1 {
+    /*width: 550px;*/
+    width: 750px;
+    /*margin: 0 0 0 -275px;*/
+    margin: 0 0 0 -375px;
+  }
+}
+
+.form-backgroud {
+	   /*background-image:url("../images/FondoCementerio2017_1.jpg");*/
+    background-image:url("../images/1.jpg");
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+    margin: 0;
+}
+
+.form-holder {
+  background: rgba(255,255,255,0.2);
+  margin-top: 10%;
+  border-radius: 3px;
+}
+
+.form-head {
+  font-size: 30px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 30px #000;
+  margin: 15px auto 30px auto;
+}
+
+table.dataTable tbody tr.myeven{
+    /*background-color:#f2dede;*/
+    background-color:#f6f6b1;
+}
+table.dataTable tbody tr.myodd{
+    /*background-color:#bce8f1;*/
+    background-color:#b1e7f6;
+}
+
+@media screen and (min-width: 1px) {
+  #modalreiempaddcr {
+    width: 550px;
+    margin: 0 0 0 -275px;
+  }
+}
+
+@media screen and (min-width: 1px) {
+  #modalreiempeditcr {
+    width: 550px;
+    margin: 0 0 0 -275px;
+  }
+}
+
+@media screen and (min-width: 1px) {
+  #modalreiempeditdcr {
+    width: 550px;
+    margin: 0 0 0 -275px;
+  }
+}
+
+@media screen and (min-width: 1px) {
+  #modalreiempaddclonpla {
+    width: 550px;
+    margin: 0 0 0 -275px;
+  }
+}
+
+/*@media screen and (min-width: 1px) {
+  #modalselfile {
+    width: 550px;
+    margin: 0 0 0 -275px;
+  }
+}*/
+
+.my_class_col {
+  text-decoration:none;
+  font-weight:bold;
+  line-height:1.5em;
+  padding:0 .5em;
+  color:#000;
+  box-shadow: inset 0 1px 6px rgba(41, 41, 41, 0.2),
+                    0 1px 2px rgba(0, 0, 0, 0.05);  
+  text-shadow: 0 1px 1px rgba(40, 40, 40, 0.75);
+}
+
+.selected{
+  background-color:#ccffcc;
+}
+
+.bad{
+  background-color:#ffcccc;
+}
+
+@media screen and (min-width: 1px) {
+  #modalreiempaddcrdig {
+    width: 550px;
+    margin: 0 0 0 -275px;
+  }
+}
+
+@media screen and (min-width: 1px) {
+  #modaladdcrdmdo {
+    width: 550px;
+    margin: 0 0 0 -275px;
+  }
+}
+
+@media screen and (min-width: 1px) {
+  #modalrptpadperiodobanco {
+    width: 550px;
+    margin: 0 0 0 -275px;
+  }
+}
+
+@media screen and (min-width: 1px) {
+  #modalobservacr {
+    width: 550px;
+    margin: 0 0 0 -275px;
+  }
+}
+
+table.dataTable tbody tr.verdecrs{
+   /*background-color:#33cc33;*/
+  background-color:#adebad;
+}
+table.dataTable tbody tr.rojocrs{
+   /*background-color:#ff4d4d;*/
+  background-color:#ff9999;
+}
+table.dataTable tbody tr.amarillocrs{
+  /*#ffff00*/
+    background-color:#ffff99;
+}
+table.dataTable tbody tr.celestecrs{
+  /*#00ffff*/
+    background-color:#99ebff;
+}
+table.dataTable tbody tr.griscrs{
+  /*#808080*/
+    background-color:#cccccc;
+}
+table.dataTable tbody tr.naranjacrs{
+  /*#ff3300*/
+    /*background-color:#ff704d;*/
+    background-color:#ff751a;
+}
+table.dataTable tbody tr.fucsiacrs{
+  /*#ff33cc*/
+    /*background-color:#ff99e6;*/
+    background-color:#d966ff;
+}
+table.dataTable tbody tr.azulcrs{
+  /*#3333ff*/
+  /*background-color:#9999ff;*/
+  background-color:#99d6ff
+}
+table.dataTable tbody tr.rosacrs{
+    background-color:#ff99cc;
+}
+
+table.dataTable tbody tr.griszebracrs{
+    background-color:#33cc33;
+}
+
+table.dataTable tbody tr.verdeoscrs{
+    background-color:#408000;
+}
+
+table.dataTable tbody tr.sinchecke{
+    checke : 0;
+}
+
+td.details-control {
+    background: url('../images/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('../images/details_close.png') no-repeat center center;
+}
+
+@media screen and (min-width: 1px) {
+  #modalsaldouexp {
+    width: 550px;
+    margin: 0 0 0 -275px;
+  }
+}
+

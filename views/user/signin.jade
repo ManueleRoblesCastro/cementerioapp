@@ -1,0 +1,30 @@
+extends ../default
+
+block content
+
+		div(class=['ui', 'middle', 'aligned', 'center', 'aligned', 'grid', 'form-backgroud'])
+			div(class=['column', 'six', 'wide', 'form-holder'])
+					h2(class=['center', 'aligned', 'header', 'form-head'])='Ingreso al SISTEMA (Cementerio Jardin Las Rosas)'
+
+					if message.length > 0
+						div(class=['ui', 'message', 'succsess'])
+							div(class='header') = message
+
+					div(class=['ui', 'form'])
+						form(class=['ui','form'], action='https://cementerioapp.herokuapp.com/signin', method='post', autocomplete='off' )						
+							div(class=['ui','field'])
+								label(for='username')=''
+								div(class = ['ui', 'input', 'left', 'icon'])
+									input(type='text' name='username' id='username' placeholder='Digite Usuario' onKeyUp='this.value = this.value.toUpperCase();')
+									i(class=['user', 'icon'])
+							div(class=['ui','field'])
+								label(for='password')=''
+								div(class = ['ui', 'input', 'left', 'icon'])
+									input(type='password' name='password' id='password' placeholder='Digite Constraseña' onKeyUp='this.value = this.value.toUpperCase();')
+									i(class=['lock', 'icon'])
+							button(class=['ui', 'button', 'pink'])='Iniciar Sesión'
+
+					if authmessage.length > 0
+						div(class=['ui', 'message', 'error'])
+							i(class=['close','icon'])
+							div(class='header')=authmessage
